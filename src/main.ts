@@ -1,9 +1,12 @@
-import createApp from "express";
+import "dotenv/config";
+import createApp, { json } from "express";
 
-import todos from "./routes/todos";
+import { authRouter } from "./modules/auth/router";
 
 const app = createApp();
 
-app.use("/todos", todos);
+app.use(json());
+
+app.use("/", authRouter);
 
 app.listen(3000, () => console.log("Server running at http://localhost:3000"));
